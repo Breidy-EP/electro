@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
+import GoogleAnalytics from "@/components/GoogleAnalytics"
 
 export const metadata: Metadata = {
   title: "ELECTRO FNI | ElectroIngeniería FNI",
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col">
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics id={process.env.NEXT_PUBLIC_GA_ID} />}
         {children}
       </body>
     </html>
