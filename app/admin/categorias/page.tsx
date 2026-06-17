@@ -42,6 +42,8 @@ function CategoriasPageInner() {
     }).catch(console.error)
   }, [router])
 
+  const revalidate = () => fetch("/api/revalidate", { method: "POST" }).catch(() => {})
+
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -49,6 +51,7 @@ function CategoriasPageInner() {
       toast('Categoría creada')
       setNewCat({ nombre: "", slug: "", icono: "" })
       await load()
+      revalidate()
     } catch (err) { toast('Error: ' + (err instanceof Error ? err.message : String(err)), 'error') }
   }
 
@@ -63,6 +66,7 @@ function CategoriasPageInner() {
       toast('Categoría actualizada')
       setEditingId(null)
       await load()
+      revalidate()
     } catch (err) { toast('Error: ' + (err instanceof Error ? err.message : String(err)), 'error') }
   }
 
@@ -72,6 +76,7 @@ function CategoriasPageInner() {
       await adminEliminarCategoria(id)
       toast('Categoría eliminada')
       await load()
+      revalidate()
     } catch (err) { toast('Error: ' + (err instanceof Error ? err.message : String(err)), 'error') }
   }
 

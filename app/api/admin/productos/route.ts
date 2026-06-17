@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
+import { revalidatePath } from "next/cache"
 
 function getAdminClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -15,6 +16,8 @@ export async function DELETE(req: NextRequest) {
     const adminClient = getAdminClient()
     const { error } = await adminClient.from("productos").delete().eq("id", id)
     if (error) throw error
+    revalidatePath("/")
+    revalidatePath("/catalogo")
     return NextResponse.json({ success: true })
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Delete failed"
@@ -41,6 +44,8 @@ export async function PATCH(req: NextRequest) {
       }
     }
 
+    revalidatePath("/")
+    revalidatePath("/catalogo")
     return NextResponse.json(data)
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Update failed"
@@ -62,6 +67,8 @@ export async function POST(req: NextRequest) {
       await adminClient.from("imagenes_producto").insert({ producto_id: prodId, url: imagen, texto_alt: imagen_alt || "", orden: 0 })
     }
 
+    revalidatePath("/")
+    revalidatePath("/catalogo")
     return NextResponse.json(data)
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Create failed"

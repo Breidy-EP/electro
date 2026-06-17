@@ -2,6 +2,8 @@ import Link from "next/link"
 import { obtenerDestacados } from "@/lib/supabase-queries"
 import HomeClient from "./HomeClient"
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   let productos: Awaited<ReturnType<typeof obtenerDestacados>> = []
   try {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
+import { revalidatePath } from "next/cache"
 
 function getAdminClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -86,6 +87,7 @@ export async function POST(req: NextRequest) {
       await adminClient.from("productos").update({ stock: prod.stock - item.qty }).eq("id", prod.id)
     }
 
+    revalidatePath("/catalogo")
     return NextResponse.json({ orden_id: orden.id, total })
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Error en checkout"

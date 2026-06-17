@@ -2,6 +2,8 @@ import Link from "next/link"
 import { obtenerProductos } from "@/lib/supabase-queries"
 import CatalogoClient from "./CatalogoClient"
 
+export const dynamic = 'force-dynamic'
+
 export default async function CatalogoPage() {
   let productos: Awaited<ReturnType<typeof obtenerProductos>> = []
   try {
