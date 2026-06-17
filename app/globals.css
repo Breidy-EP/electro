@@ -401,7 +401,7 @@ img { max-width: 100%; height: auto; }
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 72px;
+  padding-top: 5px;
   background-image: url('https://www.redeweb.com/wp-content/uploads/2023/10/electronica-digital-scaled.jpg');
   background-size: cover;
   background-position: center;

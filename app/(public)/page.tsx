@@ -18,10 +18,24 @@ export default async function HomePage() {
         <div className="container">
           <div className="hero-content">
             <div className="hero-text-col">
+              <h1 className="hero-title text-headline-xl">MISIÓN</h1>
+              <p className="hero-subtitle text-body-lg">
+                Brindar a la comunidad de la Facultad Nacional de Ingeniería una tienda virtual especializada en componentes electrónicos que facilite el acceso rápido, confiable y accesible a materiales tecnológicos necesarios para el desarrollo de prácticas académicas, proyectos e investigación, mediante una plataforma de comercio electrónico eficiente, asesoría básica y entrega oportuna dentro del campus universitario.
+              </p>
+            </div>
+            <div className="hero-text-col">
+              <h1 className="hero-title text-headline-xl">VISIÓN</h1>
+              <p className="hero-subtitle text-body-lg">
+                Convertirse en la principal tienda virtual de componentes electrónicos del entorno universitario, reconocida por su innovación, rapidez de servicio y apoyo al desarrollo académico y tecnológico de los estudiantes de ingeniería, expandiendo progresivamente su alcance hacia otras facultades e instituciones educativas.  
+              </p>
+            </div>
+          </div>
+          <div className="hero-content">
+            <div className="hero-text-col">
               <div className="hero-badge">
                 <span>TIENDA OFICIAL FNI</span>
               </div>
-              <h1 className="hero-title text-headline-xl">ElectroIngeniería FNI</h1>
+              <h1 className="hero-title text-headline-xl">ELECTROINGENIERÍA FNI</h1>
               <p className="hero-subtitle text-body-lg">
                 ElectroIngeniería FNI es una tienda virtual de comercio electrónico especializada en la comercialización de componentes electrónicos y herramientas básicas destinadas principalmente a estudiantes de ingeniería y personas que requieren materiales electrónicos dentro del entorno académico de la Facultad Nacional de Ingeniería.
               </p>
