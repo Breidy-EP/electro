@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useCart } from "@/components/CartContext"
 import { useToast } from "@/components/Toast"
 import Link from "next/link"
 
 export default function CarritoPage() {
+  const router = useRouter()
   const { items, subtotal, tax, total, changeQty, removeFromCart, clearCart } = useCart()
   const { show } = useToast()
   const [nombre, setNombre] = useState("")
@@ -32,8 +34,8 @@ export default function CarritoPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Error al procesar")
-      show(`✓ Reserva confirmada. Código: ${data.orden_id.slice(0, 8)}...`)
       clearCart()
+      router.push(`/carrito/pago?orden=${data.orden_id}&total=${data.total}`)
     } catch (e) {
       show("✗ " + (e instanceof Error ? e.message : "Error al procesar"))
     }
@@ -111,10 +113,7 @@ export default function CarritoPage() {
                 <span>Subtotal</span>
                 <span>{`Bs ${subtotal.toFixed(2)}`}</span>
               </div>
-              <div className="summary-line">
-                <span>Impuestos (21%)</span>
-                <span>{`Bs ${tax.toFixed(2)}`}</span>
-              </div>
+
               <div className="summary-line">
                 <span>Gastos de Gestión</span>
                 <span className="free">GRATIS</span>

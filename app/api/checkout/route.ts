@@ -50,15 +50,14 @@ export async function POST(req: NextRequest) {
     }
 
     const subtotal = items.reduce((s: number, i: { precio: number; qty: number }) => s + i.precio * i.qty, 0)
-    const impuesto = subtotal * 0.21
-    const total = subtotal + impuesto
+    const total = subtotal
 
     const { data: orden, error: ordenErr } = await adminClient
       .from("ordenes")
       .insert({
         cliente_id: cliente.id,
         estado: "pendiente",
-        subtotal, impuesto, costo_envio: 0, total,
+        subtotal, impuesto: 0, costo_envio: 0, total,
         metodo_envio: metodo_envio || "estandar",
         notas: notas || null,
       })
